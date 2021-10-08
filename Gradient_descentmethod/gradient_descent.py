@@ -1,18 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
-# from mpl_toolkits import mplot3d
-from mpl_toolkits.mplot3d import Axes3D
-
+from mpl_toolkits import mplot3d
 
 def f(x, y):
     return (1+x)**2+100*(y-x**2)**2
-
 
 def gradient(x, y):
     dx = -400*x*y+400*x**3+2*x-2
     dy = 200*y-200*x**2
     return np.array([dx, dy])
-
 
 def GradientDescent(Grad, x, y, eta=0.0012, epsilon=0.001, nMax=1000):
     i = 0
@@ -29,9 +25,9 @@ def GradientDescent(Grad, x, y, eta=0.0012, epsilon=0.001, nMax=1000):
         sol = sol-eta*Grad(x, y)
         error = sol-sol_prev
         x, y = sol[0], sol[1]
+
     print('최저점의 위치 : ', sol)
     return sol, pos_x, pos_y, pos_count
-
 
 solution, pos_x, pos_y, pos_count = GradientDescent(gradient, -2, 2)
 
@@ -55,8 +51,7 @@ ax.set_title('f(x,y)')
 ax = fig.add_subplot(1, 2, 2)
 ax.contour(X, Y, Z, 40, cmap='jet')
 ax.scatter(pos_x, pos_y, color='r', marker='.')
-ax.quiver(pos_x[:-1], pos_y[:-1], anglesx, anglesy,
-          scale_units='xy', angles='xy', scale=1, color='r')
+ax.quiver(pos_x[:-1], pos_y[:-1], anglesx, anglesy,scale_units='xy', angles='xy', scale=1, color='r')
 ax.set_title('contour map: {} iterations'.format(len(pos_count)))
 
 plt.show()
