@@ -1,3 +1,4 @@
+## 와인 데이터 집합 분류하기
 import pandas as pd
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
@@ -25,5 +26,5 @@ X_test = scaler.transform(X_test)   # 테스트 데이터 스케일 조정
 mlp = MLPClassifier(hidden_layer_sizes=(13, 13, 13), max_iter=500)  # MLP객체 생성
 mlp.fit(X_train, y_train)   # mlp학습 시행
 predictions = mlp.predict(X_test)   # X_test로 예측 시행
-print(confusion_matrix(y_test, predictions))
-print(classification_report(y_test, predictions))
+print(confusion_matrix(y_test, predictions))    # 결과 출력
+print(classification_report(y_test, predictions))   # 결과 출력
